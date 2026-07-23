@@ -8,10 +8,6 @@
   var label = toggle.querySelector(".theme-toggle__label");
   var STORAGE_KEY = "kiran-portfolio-theme";
 
-  function systemPrefersDark() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
     var isDark = theme === "dark";
@@ -20,19 +16,15 @@
     label.textContent = isDark ? "DARK" : "LIGHT";
   }
 
+  // Dark is the default regardless of system preference; only an explicit
+  // toggle click (persisted below) switches it to light.
   var stored = localStorage.getItem(STORAGE_KEY);
-  applyTheme(stored || (systemPrefersDark() ? "dark" : "light"));
+  applyTheme(stored || "dark");
 
   toggle.addEventListener("click", function () {
     var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     applyTheme(next);
     localStorage.setItem(STORAGE_KEY, next);
-  });
-
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      applyTheme(e.matches ? "dark" : "light");
-    }
   });
 
   /* ---------------- Footer year ---------------- */
