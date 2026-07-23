@@ -294,20 +294,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 .avatar {
-  width: 76px;
-  height: 76px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   background: var(--green-soft);
   border: 1px solid var(--hairline);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  flex: none;
 }
 
-.avatar__initials {
-  color: var(--green);
-  font-size: 1.1rem;
-  font-weight: 600;
+.avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
 }
 
 .log {
